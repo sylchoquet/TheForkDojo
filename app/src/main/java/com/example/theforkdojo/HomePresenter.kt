@@ -7,6 +7,7 @@ class HomePresenter(
 
     fun initialize() {
         view.displayMessage("Hello")
+        view.displayActions(homeRepository.getActions())
     }
 
 }
