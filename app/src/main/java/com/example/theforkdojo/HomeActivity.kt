@@ -6,13 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity(), HomeView {
-
-    private val presenter = HomePresenter(this, HomeRepository())
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var homeAdapter: HomeAdapter
-
-    //TODO pull to refresh
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +19,15 @@ class HomeActivity : AppCompatActivity(), HomeView {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = homeAdapter
         }
-        presenter.initialize()
+
+        displayItems(listOf("Bienvenue", "au", "coding", "dojo"))
     }
 
-    override fun displayMessage(message: String) {
+    fun displayMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun displayActions(actions: List<Action>) {
+    private fun displayItems(actions: List<String>) {
         homeAdapter.setItems(actions)
     }
 
