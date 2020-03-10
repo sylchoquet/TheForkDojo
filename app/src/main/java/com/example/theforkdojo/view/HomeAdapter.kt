@@ -1,14 +1,17 @@
-package com.example.theforkdojo
+package com.example.theforkdojo.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.theforkdojo.R
+import com.example.theforkdojo.domain.Action
+import kotlinx.android.synthetic.main.item_action.view.*
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
-    private var dataset = emptyList<Action>()
+    private var items = emptyList<Action>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_action, parent, false)
@@ -16,22 +19,24 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textViewId.text = dataset[position].id
-        holder.textViewDescription.text = dataset[position].description
+        val action = items[position]
+
+        holder.textViewOwner.text = action.owner
+        holder.textViewDescription.text = action.description
     }
 
     override fun getItemCount(): Int {
-        return dataset.size
+        return items.size
     }
 
     fun setItems(items: List<Action>) {
-        this.dataset = items
+        this.items = items
         notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textViewId: TextView = view.findViewById(R.id.id)
-        val textViewDescription: TextView = view.findViewById(R.id.description)
+        val textViewOwner: TextView = view.owner
+        val textViewDescription: TextView = view.description
     }
 
 }

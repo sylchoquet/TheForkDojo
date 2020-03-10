@@ -1,4 +1,7 @@
-package com.example.theforkdojo
+package com.example.theforkdojo.presenter
+
+import com.example.theforkdojo.data.HomeRepository
+import com.example.theforkdojo.view.HomeView
 
 class HomePresenter(
     private val view: HomeView,
