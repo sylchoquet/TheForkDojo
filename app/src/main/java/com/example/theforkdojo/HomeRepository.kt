@@ -1,14 +1,20 @@
 package com.example.theforkdojo
 
-import java.util.*
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeRepository {
 
-    fun getActions(): List<Action> {
-        return listOf(
-            Action("edwe", "wewwwew", User(name = "Sylvain"), Date(), Date()),
-            Action("sfdgdfggg", "sdfsdf", User(name = "Laurent"), Date(), Date())
-        )
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://androidcodingdojo.appspot.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val actionsService = retrofit.create(ActionService::class.java)
+
+    fun getActions(): Call<List<Action>> {
+        return actionsService.getActions()
     }
 
 }
