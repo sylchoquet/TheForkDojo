@@ -14,14 +14,14 @@ class HomePresenter(
 
         homeRepository.getActions().enqueue(object : Callback<List<Action>> {
             override fun onFailure(call: Call<List<Action>>, t: Throwable) {
-                TODO("not implemented")
+                println(t)
             }
 
             override fun onResponse(call: Call<List<Action>>, response: Response<List<Action>>) {
                 if (response.isSuccessful) {
                     view.displayActions(response.body()!!)
                 } else {
-
+                    println(response)
                 }
             }
         })
