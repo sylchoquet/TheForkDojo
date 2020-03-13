@@ -29,6 +29,11 @@ class HomeActivity : AppCompatActivity(), HomeView {
         }
 
         presenter.initialize()
+
+        pullToRefresh.setOnRefreshListener {
+            presenter.onRefresh()
+            pullToRefresh.isRefreshing = false
+        }
     }
 
     override fun displayMessage(message: String) {
